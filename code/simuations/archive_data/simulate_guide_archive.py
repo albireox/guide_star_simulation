@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2019-02-07 14:49:00
+# @Last modified time: 2019-02-07 14:50:11
 
 import multiprocessing
 import pathlib
@@ -118,21 +118,21 @@ def simulate(df):
     col_index = pandas.MultiIndex.from_tuples(
         [('index', ''),
          ('n_stars', 'orig'),
-         ('n_stars', 'sample'),
+         ('n_stars', 'sim'),
          ('distribution_estimate', 'orig'),
-         ('distribution_estimate', 'sample'),
+         ('distribution_estimate', 'sim'),
          ('mRA', 'orig'),
-         ('mRA', 'sample'),
+         ('mRA', 'sim'),
          ('mDec', 'orig'),
-         ('mDec', 'sample'),
+         ('mDec', 'sim'),
          ('mRot', 'orig'),
-         ('mRot', 'sample'),
+         ('mRot', 'sim'),
          ('mScale', 'orig'),
-         ('mScale', 'sample'),
+         ('mScale', 'sim'),
          ('guideRMS', 'orig'),
-         ('guideRMS', 'sample'),
+         ('guideRMS', 'sim'),
          ('pos_error', 'orig'),
-         ('pos_error', 'sample')])
+         ('pos_error', 'sim')])
 
     df_return = pandas.DataFrame.from_records(rows, columns=col_index)
 
