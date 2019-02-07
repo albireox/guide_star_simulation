@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2019-02-07 14:24:10
+# @Last modified time: 2019-02-07 14:25:57
 
 import multiprocessing
 import pathlib
@@ -21,6 +21,7 @@ from cherno.tools.fitting import filter_gprobes, guider_fit
 n_samples = 5
 
 data_path = pathlib.Path('~/sdss09/QA/guider_tests').expanduser()
+out_path = pathlib.Path('../../../out/simulations/archive_data')
 
 observatory = 'APO'
 platescale = 217.7358 if observatory == 'APO' else 330.275
@@ -148,4 +149,4 @@ data = pandas.concat(pool.map(simulate, data_split))
 pool.close()
 pool.join()
 
-data.to_hdf('guide_simulate.h5', observatory.lower())
+data.to_hdf(out_path / 'guide_simulate.h5', observatory.lower())
