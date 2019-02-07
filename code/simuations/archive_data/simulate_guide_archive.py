@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2019-02-07 11:34:12
+# @Last modified time: 2019-02-07 14:02:15
 
 import multiprocessing
 import pathlib
@@ -75,7 +75,7 @@ def simulate(df):
     for index, gprobes in df.groupby(level=0):
 
         gprobes_filt = filter_gprobes(gprobes)
-        if len(gprobes_filt) < 10:
+        if len(gprobes_filt) < 13:
             continue
 
         orig_distribution_estimate = calculate_distribution_estimator(
