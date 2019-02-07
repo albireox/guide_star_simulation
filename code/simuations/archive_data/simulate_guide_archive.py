@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2019-02-07 14:25:57
+# @Last modified time: 2019-02-07 14:42:40
 
 import multiprocessing
 import pathlib
@@ -146,6 +146,7 @@ cores = multiprocessing.cpu_count()
 data_split = numpy.array_split(bintable, cores)
 pool = multiprocessing.Pool(cores)
 data = pandas.concat(pool.map(simulate, data_split))
+data.set_index('index', inplace=True)
 pool.close()
 pool.join()
 
