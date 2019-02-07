@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2019-02-07 14:02:15
+# @Last modified time: 2019-02-07 14:04:25
 
 import multiprocessing
 import pathlib
@@ -74,6 +74,10 @@ def simulate(df):
 
     for index, gprobes in df.groupby(level=0):
 
+        dra = header.loc[index].dra
+        if numpy.isnan(dra) or dra <= -999:
+            continue
+
         gprobes_filt = filter_gprobes(gprobes)
         if len(gprobes_filt) < 13:
             continue
@@ -133,6 +137,7 @@ def simulate(df):
     return df_return
 
 
+header = pandas.read_hdf(data_path / f'guider_{observatory.lower()}.h5', 'header')
 bintable = pandas.read_hdf(data_path / f'guider_{observatory.lower()}.h5', 'bintable')
 
 cores = multiprocessing.cpu_count()
