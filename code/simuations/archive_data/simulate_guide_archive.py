@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2019-02-07 14:04:25
+# @Last modified time: 2019-02-07 14:24:10
 
 import multiprocessing
 import pathlib
@@ -98,41 +98,42 @@ def simulate(df):
             rows.append([
                 index,
                 len(gprobes_filt),
-                orig_distribution_estimate,
-                orig_fit.mRA,
-                orig_fit.mDec,
-                orig_fit.mRot,
-                orig_fit.mScale,
-                orig_fit.guideRMS,
-                orig_fit.pos_error,
                 n_gprobes_sample,
+                orig_distribution_estimate,
                 sample_distribution_estimate,
+                orig_fit.mRA,
                 sample_fit.mRA,
+                orig_fit.mDec,
                 sample_fit.mDec,
+                orig_fit.mRot,
                 sample_fit.mRot,
+                orig_fit.mScale,
                 sample_fit.mScale,
+                orig_fit.guideRMS,
                 sample_fit.guideRMS,
+                orig_fit.pos_error,
                 sample_fit.pos_error])
 
-    df_return = pandas.DataFrame.from_records(
-        rows,
-        columns=['index',
-                 'orig_n_stars',
-                 'orig_distribution_estimate',
-                 'orig_fit_mRA',
-                 'orig_fit_mDec',
-                 'orig_fit_mRot',
-                 'orig_fit_mScale',
-                 'orig_fit_guideRMS',
-                 'orig_fit_pos_error',
-                 'sample_n_stars',
-                 'sample_distribution_estimate',
-                 'sample_fit_mRA',
-                 'sample_fit_mDec',
-                 'sample_fit_mRot',
-                 'sample_fit_mScale',
-                 'sample_fit_guideRMS',
-                 'sample_fit_pos_error'])
+    col_index = pandas.MultiIndex.from_tuples(
+        [('index', ''),
+         ('n_stars', 'orig'),
+         ('n_stars', 'sample'),
+         ('distribution_estimate', 'orig'),
+         ('distribution_estimate', 'sample'),
+         ('mRA', 'orig'),
+         ('mRA', 'sample'),
+         ('mDec', 'orig'),
+         ('mDec', 'sample'),
+         ('mRot', 'orig'),
+         ('mRot', 'sample'),
+         ('mScale', 'orig'),
+         ('mScale', 'sample'),
+         ('guideRMS', 'orig'),
+         ('guideRMS', 'sample'),
+         ('pos_error', 'orig'),
+         ('pos_error', 'sample')])
+
+    df_return = pandas.DataFrame.from_records(rows, columns=col_index)
 
     return df_return
 
