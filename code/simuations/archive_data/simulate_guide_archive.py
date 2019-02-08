@@ -7,7 +7,7 @@
 # @License: BSD 3-clause (http://www.opensource.org/licenses/BSD-3-Clause)
 #
 # @Last modified by: José Sánchez-Gallego (gallegoj@uw.edu)
-# @Last modified time: 2019-02-07 15:40:44
+# @Last modified time: 2019-02-07 15:59:11
 
 import multiprocessing
 import pathlib
@@ -77,7 +77,7 @@ def simulate(df):
 
         dra = header.loc[index].dra
         dscale = header.loc[index].dscale
-        if numpy.isnan(dra) or dra <= -999 or dscale <= -999:
+        if numpy.isnan(dra) or dra <= -999 or numpy.isnan(dscale) or dscale <= -999:
             continue
 
         gprobes_filt = filter_gprobes(gprobes)
